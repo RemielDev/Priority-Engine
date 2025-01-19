@@ -17,4 +17,13 @@ The _G.import function can accept either a list of module names or a specific mo
 
 ## Usage in Modules and Controllers
 When invoked within a module or a controller, _G.import dynamically searches for the specified modules within the cached loaded modules. This search mechanism is intelligent enough to differentiate between client-side and server-side modules, ensuring that only the appropriate modules are loaded depending on the context in which _G.import is called.
-'_G.import({"module1", "module2"} or "module1") : returning unpacked table of requested modules.'
+`_G.import({"module1", "module2"} or "module1") : returning unpacked table of requested modules.`
+
+## Benefits
+The introduction of _G.import in the framework offers several key benefits:
+
+- Enhanced Code Reusability: By facilitating easy access to shared modules, _G.import encourages code reusability, allowing developers to write more modular and maintainable code.
+- Improved Project Organization: Centralizing module imports through a single function helps maintain a cleaner and more organized codebase, making it easier to manage complex projects.
+- Streamlined Development Workflow: The ability to import multiple modules or specific modules as needed simplifies the development workflow, enabling developers to focus more on building features and less on writing module paths.
+## Outcome
+The result is a structured and efficient loading process that ensures all game components are initialized and ready in a logical order, enhancing the game’s performance and reliability. By separating the initialization of modules from the loading of controllers and respecting priorities and dependencies, the framework provides a robust foundation for building complex and scalable Roblox games.
