@@ -6,3 +6,15 @@ A simple Roblox framework module/controller loader which is designed to streamli
 ## Module Initialization
 In the first phase, the loader starts by initializing modules, which are foundational elements containing reusable code that can be employed across various parts of the game. These modules might include libraries, utilities, or any standalone functionalities that do not directly interact with the game’s client or server scripts but provide essential services or data structures required by the controllers.
 
+## Controller Loading
+Following the module initialization, the loader transitions to handling controllers. Controllers are more specialized scripts that directly manage the game’s logic and interactions, divided into client and server categories to respect the game’s networking model. The client controllers handle the user interface, input, and other client-side functionalities, while the server controllers manage game states, player data, and other server-side operations.
+
+## Priority aka Dependencies
+The loader is designed to consider priorities during the controller loading phase. This means that controllers that are marked as different priorities (0, 1, 2, 3…) will run on grouped threads and will yield until threads are completed before continuing to the next priority group. This dependency management ensures that any controller relying on the functionalities or data provided by another controller will only be loaded once its previous priorities have been satisfied, preventing errors and ensuring a coherent load order.
+
+## `_G.import` Functionality
+The _G.import function can accept either a list of module names or a specific module name as its argument. This flexibility allows developers to either bulk-import multiple modules in a single call or retrieve a specific module as needed, thereby catering to various use cases and improving code organization.
+
+## Usage in Modules and Controllers
+When invoked within a module or a controller, _G.import dynamically searches for the specified modules within the cached loaded modules. This search mechanism is intelligent enough to differentiate between client-side and server-side modules, ensuring that only the appropriate modules are loaded depending on the context in which _G.import is called.
+'_G.import({"module1", "module2"} or "module1") : returning unpacked table of requested modules.'
